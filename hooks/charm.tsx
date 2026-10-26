@@ -68,7 +68,7 @@ export const register: Register = on => {
         <Box flexDirection="column" borderStyle="round" borderColor={CORAL} paddingX={1}>
           <Text dimColor>{`No.${c.card}`}</Text>
           <Text color={CORAL}>{`${GLYPHS[c.stars] ?? '★'}  ${stars(c.stars)}`}</Text>
-          <Text>{`${c.color} · ${c.key}`}</Text>
+          <Text>{`색 ${c.color} · 키 ${c.key}`}</Text>
         </Box>
       </Box>
     )

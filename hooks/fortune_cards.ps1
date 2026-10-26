@@ -18,7 +18,7 @@ function New-RoundedPath([float]$x, [float]$y, [float]$w, [float]$h, [float]$r) 
 
 function New-Rect($x, $y, $w, $h) { New-Object Drawing.Rectangle([int]$x, [int]$y, [int]$w, [int]$h) }
 
-# 운세 목록
+# 기본 운세 목록 (~/.claude/lucky-hook/fortunes.json이 있으면 아래에서 그 목록으로 바뀐다)
 $messages = @(
     '미뤄두던 리팩터링이 술술 풀리는 날', '작은 커밋이 큰 성과로 이어지는 날', '처음 보는 에러와도 금방 친해지는 날',
     '질문 하나가 막힌 길을 뚫어 주는 날', '오늘 쓴 코드가 내일의 나를 구하는 날', 'README를 읽으면 답이 보이는 날',
@@ -44,6 +44,18 @@ $today       = $now.ToString('yyyy-MM-dd')
 $dateText    = "$today ($('일월화수목금토'[[int]$now.DayOfWeek]))"
 $closeAfter  = 15    # 카드를 뒤집은 뒤 자동으로 닫히기까지 (초)
 $idleLimit   = 180   # 고르지 않고 방치하면 저장 없이 조용히 닫힘 (초)
+
+# 사용자 운세 목록: fortunes.json에 적은 목록이 기본 목록을 대신한다. 빠졌거나 빈 목록, 읽지 못한 파일은 기본값 그대로
+$customFile = Join-Path $fortuneDir 'fortunes.json'
+if (Test-Path $customFile) {
+    try {
+        $custom = [IO.File]::ReadAllText($customFile, $utf8) | ConvertFrom-Json
+        foreach ($name in 'messages', 'codings', 'colors', 'keys') {
+            $list = @($custom.$name | Where-Object { $_ -is [string] -and $_.Trim() })
+            if ($list.Count) { Set-Variable -Name $name -Value $list }
+        }
+    } catch {}
+}
 
 # 세션을 여러 개 동시에 열어도 팝업은 하나만: 이미 떠 있으면 바로 종료
 $mutex = New-Object Threading.Mutex($false, 'Local\LuckyHookFortuneCards')

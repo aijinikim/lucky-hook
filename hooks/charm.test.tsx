@@ -23,7 +23,7 @@ test('오늘 고른 카드가 장신구로 그려진다, 모든 표면에서', a
 
     expect((await ui.find({ type: 'Text', text: /No\./ }))?.text).toBe('No.2')
     expect((await ui.find({ type: 'Text', text: /★/ }))?.text).toBe('☁  ★★★☆☆')
-    expect((await ui.find({ type: 'Text', text: /Ctrl/ }))?.text).toBe('라벤더 · Ctrl+C')
+    expect((await ui.find({ type: 'Text', text: /Ctrl/ }))?.text).toBe('색 라벤더 · 키 Ctrl+C')
     await ui.unmount()
   }
 })
