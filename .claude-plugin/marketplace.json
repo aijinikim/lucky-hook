@@ -1,0 +1,12 @@
+{
+  "name": "lucky-hook",
+  "owner": { "name": "aijinikim" },
+  "description": "aijinikim의 Claude Code 운세 훅 플러그인",
+  "plugins": [
+    {
+      "name": "lucky-hook",
+      "source": "./",
+      "description": "세션 시작 카드 뽑기 운세 팝업 + 프롬프트 위 운세 카드 장신구 (Windows)"
+    }
+  ]
+}

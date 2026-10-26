@@ -1,0 +1,10 @@
+{
+  "name": "lucky-hook",
+  "version": "1.0.0",
+  "description": "세션을 시작하면 카드 3장 중 한 장을 골라 오늘의 운세를 뽑고, 뽑은 카드를 프롬프트 위에 장신구처럼 띄워 두는 Claude Code 훅 (Windows)",
+  "author": { "name": "aijinikim" },
+  "repository": "https://github.com/aijinikim/lucky-hook",
+  "license": "MIT",
+  "keywords": ["hooks", "fortune", "session-start", "windows", "fun"],
+  "types": "./types/index.d.ts"
+}
